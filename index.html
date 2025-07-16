@@ -584,7 +584,14 @@
 <div id="products"></div> <!-- هنا عرض المنتجات -->
 <div id="tabs"></div>
 <div id="shops-container"></div>
-<div id="products-page"><button id="back-to-tabs" style="display: none; margin: 20px auto; padding: 10px 20px; background: #002A6C; color: #fff; border: none; border-radius: 12px; cursor: pointer; font-size: 16px;">الرجوع للأقسام</button>
+<div id="products-page">
+  <button id="back-to-tabs"
+    onclick="showMainPage()"
+    style="display: block; margin: 20px auto; padding: 10px 20px; background: #002A6C; color: #fff; border: none; border-radius: 12px; cursor: pointer; font-size: 16px;">
+    الرجوع للأقسام
+  </button>
+
+  
 <!-- حذف الزر بالكامل -->
 <div id="shop-title"></div>
 <div id="subcategories"></div>
@@ -720,6 +727,16 @@
       currentShop = null;
       renderTabs();
       renderShops();
+      goHome();
+
+      // ✅ نظهر زر الرجوع حتى لما نضغط على القسم فقط
+      document.getElementById("back-to-tabs").style.display = "block";
+    };
+
+    tabsDiv.appendChild(tab);
+  });
+}
+
 
 // فتح الصورة المكبرة
 function openImageModal(src) {
@@ -753,26 +770,6 @@ allTabs.forEach(tabEl => {
 });
 
 // إظهار زر الرجوع للأقسام
-document.getElementById("back-to-tabs").style.display = "block";
-
-    };
-
-    tabsDiv.appendChild(tab);
-  });
-}
-document.getElementById("back-to-tabs").onclick = () => {
-  // ترجع تظهر جميع التبويبات
-  const allTabs = document.querySelectorAll("#tabs .tab");
-  allTabs.forEach(tabEl => {
-    tabEl.style.display = "inline-block";
-  });
-
-  // تخفي المحلات
-  document.getElementById("shops-container").style.display = "none";
-
-  // تخفي الزر
-  document.getElementById("back-to-tabs").style.display = "none";
-};
 
 
 
@@ -860,7 +857,8 @@ document.getElementById("back-to-tabs").onclick = () => {
   document.getElementById("products-page").style.display = "none";
 
   // 4. نخفي الزر
-  document.getElementById("back-to-tabs").style.display = "none";
+  document.getElementById("back-to-tabs").style.display = "block";
+
 };
 
 
